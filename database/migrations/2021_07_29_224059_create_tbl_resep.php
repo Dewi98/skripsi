@@ -22,9 +22,6 @@ class CreateTblResep extends Migration
                 ->references('id_resep')
                 ->on('tbl_resep')
                 ->onUpdate('cascade');
-                
-            $table->double('nama_masakan');
-            $table->integer('bahan_masakan');
             $table->integer('stok_barang')->useCurrent();
         });
     }
