@@ -4,7 +4,7 @@
 
 @section('extra_css')
 
-    {{ Html::style('admin_assets/component/datatables.net-bs/css/dataTables.bootstrap.min.css') }}
+    {{ Html::style('/admin_assets/component/datatables.net-bs/css/dataTables.bootstrap.min.css') }}
 
 @endsection
 
@@ -183,8 +183,8 @@
 
 @section('extra_js')
 
-    {{ Html::script('admin_assets/component/datatables.net/js/jquery.dataTables.min.js') }}
-    {{ Html::script('admin_assets/component/datatables.net-bs/js/dataTables.bootstrap.min.js') }}
+    {{ Html::script('/admin_assets/component/datatables.net/js/jquery.dataTables.min.js') }}
+    {{ Html::script('/admin_assets/component/datatables.net-bs/js/dataTables.bootstrap.min.js') }}
 
     <script>
         $(document).ready(function() {

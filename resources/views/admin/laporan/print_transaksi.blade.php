@@ -109,7 +109,7 @@
 <!-- /.content -->
 </div>
 <!-- ./wrapper -->
-{{ Html::script('admin_assets/component/jquery/dist/jquery.min.js') }}
+{{ Html::script('/admin_assets/component/jquery/dist/jquery.min.js') }}
 <script>
     $(document).ready(function(){
         window.print()
