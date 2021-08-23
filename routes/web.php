@@ -157,7 +157,7 @@ Route::get('invoice/{id_invoice}', 'Pengguna\Pesanan\PesananController@invoice')
 Route::group(['prefix' => 'admin'], function(){
     
 /** Halaman Beranda Utama */
-Route::get('/', 'Admin\BerandaController@index')->name('beranda_admin');
+Route::get('/beranda-admin', 'Admin\BerandaController@index')->name('beranda_admin');
 Route::get('sidebar_counter', function() {
     $table = ['barang', 'kategori', 'merk', 'pengguna', 'admin', 'pesanan', 'pembayaran', 'pengiriman'];
     $data = [];
@@ -207,7 +207,6 @@ Route::get('get_produk/{id_barang}', function($id_barang) {
 Route::post('produk', 'Admin\Produk\ProdukController@tambah_produk')->name('tambah_produk');
 Route::put('edit_produk/{id_barang}', 'Admin\Produk\ProdukController@edit_produk');
 Route::delete('hapus_produk/{id_barang}', 'Admin\Produk\ProdukController@hapus_produk');
-
 /** Halaman Kategori */
 Route::get('kategori', 'Admin\Produk\KategoriController@index')->name('kategori_produk');
 Route::get('check_kategori/{nama_kategori}', function($nama_kategori){
@@ -238,7 +237,6 @@ Route::post('superadmin/tambah_admin', 'Admin\Superadmin\AdminController@tambah_
 Route::put('superadmin/edit_admin/}id_admin}', 'Admin\Superadmin\AdminController@edit_admin');
 Route::put('superadmin/ubah_status_admin/{id_admin}', 'Admin\Superadmin\AdminController@ubah_status_admin');
 Route::delete('superadmin/hapus_admin/{id_admin}', 'Admin\Superadmin\AdminController@hapus_admin');
-
 /** Halaman Superadmin : Pengguna */
 Route::get('superadmin/pengguna', 'Admin\Superadmin\PenggunaController@index')->name('superadmin_pengguna');
 Route::get('superadmin/get_pengguna/{id_pengguna}', 'Admin\Superadmin\PenggunaController@get_pengguna'); // AJAX
@@ -268,6 +266,8 @@ Route::put('transaksi/dibatalkan/{id_pesanan}', 'Admin\Transaksi\PengirimanContr
 Route::get('laporan/transaksi', 'Admin\Laporan\TransaksiController@index')->name('laporan_transaksi');
 Route::post('laporan/transaksi/print', 'Admin\Laporan\TransaksiController@print_transaksi')->name('print_transaksi');
 Route::get('/resep', 'Admin\Resep\ResepController@index');
+//Route::get('/resep/tambah', 'Admin\Resep\ResepController@tambah_resep')->name('tambah_resep_admin');
+Route::post('resep', 'Admin\Resep\ResepController@tambah_resep')->name('tambah_resep');
 
 });
 
@@ -284,9 +284,8 @@ Route::get('send', 'Pengguna\EmailController@lupa_password');
 //Route::get('/resep', 'Resep\ResepController@resep')->name('resep');
 // Route::get('/resep', 'Pengguna\Resep\ResepController@index');
 //Route::get('/resep', 'Pengguna\Resep\ResepController@index')->name('resep');
-// Route::get('/resep', 'Pengguna\Resep\ResepController@index')->name('resep');
 Route::get('/resep', 'Pengguna\Resep\ResepController@index')->name('resep');
-Route::post('/resep/tambah', 'Pengguna\Resep\ResepController@tambah_resep')->name('tambah_resep');
+//Route::post('/resep/tambah', 'Pengguna\Resep\ResepController@tambah_resep')->name('tambah_resep');
 Route::put('/resep/edit_resep/{id_resep}', 'Pengguna\Resep\ResepController@edit_resep');
 Route::delete('/resep/hapus_resep/{id_resep}', 'Pengguna\Resep\ResepController@hapus_resep');
 Route::post('/resep/save', 'Resep\ResepController@save_resep')->name('save_resep');
@@ -295,3 +294,17 @@ Route::post('/resep/save', 'Resep\ResepController@save_resep')->name('save_resep
 
 Route::get('checkout/proses-pesanan', 'Pengguna\Transaksi\PembayaranController@index');
 Route::post('checkout/proses-pesanan', 'Admin\Transaksi\PembayaranController@prosesPesanan');
+
+//Menu
+// Route::get('/add', function () {
+//     return view('add');
+// Route::get('/admin', 'MenuController@show_by_admin');
+// });
+// Route::get('/', 'MenuController@show');
+// Route::post('/add_process', 'MenuController@add_process');
+// Route::get('/detail/{id}', 'MenuController@detail');
+// Route::get('/add', 'MenuController@add');
+// Route::get('/', 'MenuController@show');
+// Route::get('/edit/{id}', 'MenuController@edit');
+// Route::post('/edit_process', 'MenuController@edit_process');
+// Route::get('/delete/{id}', 'MenuController@delete');

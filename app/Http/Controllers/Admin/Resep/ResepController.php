@@ -30,7 +30,9 @@ class ResepController extends Controller
         if($request->has('simpan')) {
 
             $validasi = Validator::make($request->all(), [
-                'nama_resep' => 'required|regex:/^[a-zA-Z\s]*$/|max:30'
+                'nama_resep' => 'required|regex:/^[a-zA-Z\s]*$/|max:30',
+                'bahan_resep'   => 'required|integer',
+                'foto'       => 'required|mimes:jpg,jpeg,png'
             ]);
 
             if ($validasi->fails()) {
@@ -39,11 +41,15 @@ class ResepController extends Controller
 
             }
 
+
             if(DB::table('tbl_resep')->where('nama_resep', $request->input('nama_resep'))->exists() == false) {
 
                 DB::table('tbl_resep')->insert([
                     'id_resep'   => $this->set_id_resep(),
                     'nama_resep' => $request->input('nama_resep'),
+                    'bahan_resep' => $request->input('bahan_resep'),
+                    'foto' => $request->file('foto_resep'),
+                    
                 ]);
 
                 return redirect()->route('resep')->with('success', 'resep Berhasil Di Tambah');

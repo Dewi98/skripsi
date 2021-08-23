@@ -24,22 +24,13 @@ class ResepController extends Controller
     //     return view('pengguna.resep.resep', ['data_resep' => (!is_null($data) ? $data : null)]);
     // }
 
-    public function index(Request $request) {
+    public function index() {
 
 
         //if(session()->has('email_pengguna'))
         {
-            DB::table('resep')
-                ->join('tbl_resep as resep', '=',  'resep.resep_id')
-                ->select('resep.nama', 'resep.bahan', 'resep.id_resep')
-                ->where('resep.id_resep', '=', $id_resep)// 'resep.nama' session('id_resep'))
-                ->get();
-
-                // DB::table('tbl_resep')
-                // ->join('tbl_resep as resep', 'resep.id')
-                // ->select('resep.*')
-                // ->get();
-
+            $resep = DB::table('tbl_resep')->get();
+            //dd($resep);
             return view('pengguna.resep.resep', [
                 'resep' => $resep,
             ]);

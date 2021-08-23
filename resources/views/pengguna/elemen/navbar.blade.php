@@ -10,6 +10,7 @@
             <li><a href="{{ route('produk') }}">Katalog</a></li>
             {{-- <li><a href="{{ route('resep') }}">Resep</a></li> --}}
             <li><a href="/resep">Resep</a></li>
+            {{-- <li><a href="/menu">Menu</a></li> --}}
             <li><a href="#kontak">Kontak Kami</a></li>
             @if(session()->has('email_pengguna'))
                 <li><a href="{{ route('logout') }}">Keluar</a></li>

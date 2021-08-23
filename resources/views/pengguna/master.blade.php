@@ -13,6 +13,13 @@
         </style>
     </head>
     <body>
+        {{-- <div class="container mt-4">
+            @yield('header')
+            <div class="row">
+                @yield('main')
+                @yield('sidebar')
+            </div>
+        </div> --}}
         <div class="site-wrap">
             <header class="site-navbar" role="banner">
                 <div class="site-navbar-top">

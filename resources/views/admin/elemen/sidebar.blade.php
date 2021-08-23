@@ -8,7 +8,6 @@
     <li><a href="{{ route('merk_produk') }}"><i class="fa fa-tags"></i> <span>Merk <span class="label bg-primary pull-right" id="jml_merk"></span></span></a></li>
     <li><a href="{{ url('admin/resep') }}"><i class="fa fa-tags"></i> <span>Resep <span class="label bg-primary pull-right" id="jml_resep"></span></span></a></li>
     @if (session('superadmin') == true)
-    <li class="header">SUPERADMIN</li>
     <li><a href="{{ route('superadmin_pengguna') }}"><i class="fa fa-users"></i> <span>Pengguna <span class="label bg-purple pull-right" id="jml_pengguna"></span></span></a></li>
     <li><a href="{{ route('superadmin_admin') }}"><i class="fa fa-users"></i> <span>Admin <span class="label bg-purple pull-right" id="jml_admin"></span></span></a></li>
     @endif
@@ -20,4 +19,3 @@
     <li><a href="{{ route('laporan_transaksi') }}"><i class="fa fa-file-text-o"></i> <span>Transaksi</span></a></li>
 </ul>
 <!-- /.sidebar-menu -->
-//pada halaman ini untuk menambahkan menu resep

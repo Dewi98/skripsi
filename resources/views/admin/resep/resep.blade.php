@@ -50,13 +50,19 @@
                 </button>
                 </div>
             </div>
+        </div>
             <div class="box-body row">
                 {!! Form::open(['route' => 'tambah_resep', 'files' => true]) !!}
                 <div class="col-sm-6">
                     <div class="form-group has-feedback">
-                        {!! Form::label('inp_nama_resep', 'Nama Resep') !!}
-                        {!! Form::text('nama_resep',  null, ['id' => 'inp_nama_resep', 'class' => 'form-control']) !!}
+                        {!! Form::label('nama_resep', 'Nama Resep') !!}
+                        {!! Form::text('nama_resep',  null, ['id' => 'nama_resep', 'class' => 'form-control']) !!}
                         <span class="help-block"><small>Masukan nama resep tanpa karakter khusus dan angka</small></span>
+                    </div>
+                    <div class="form-group has-feedback">
+                        {!! Form::label('bahan_resep', 'Bahan Resep') !!}
+                        {!! Form::text('bahan_resep',  null, ['id' => 'bahan_resep', 'class' => 'form-control']) !!}
+                        <span class="help-block"><small>Masukan Bahan resep tanpa karakter khusus dan angka</small></span>
                     </div>
                     {{-- <div class="form-group has-feedback">
                         {!! Form::label('inp_id_resep', 'Pilih resep') !!}
@@ -77,7 +83,7 @@
                 <div class="col-sm-6">
                     <div class="form-group has-feedback">
                         {!! Form::label('inp_foto_resep', 'Foto Resep') !!}
-                        {!! Form::file('foto_resep', ['id' => 'inp_foto_resep', 'class' => 'form-control' , 'style' => 'border: none;', 'accept' => '.jpg, .jpeg, .png']) !!}
+                        {!! Form::file('foto_resep', ['id' => 'foto_resep', 'class' => 'form-control' , 'style' => 'border: none;', 'accept' => '.jpg, .jpeg, .png']) !!}
                         <span class="help-block"><small>Silahkan pilih foto resep</small></span>
                     </div>
                 </div>
@@ -110,7 +116,7 @@
                         <div class="form-group">
                             <select name="resep" class="form-control">
                                 <option value>Pilih Resep Masakan...</option>
-                                @foreach ($resep as $item)
+                                @foreach ($data_resep as $item)
                                 <option value="{{ $item->nama_resep }}">{{ $item->nama_resep }}</option>
                                 @endforeach
                             </select>
@@ -119,7 +125,7 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <button type="submit" class="btn btn-warning">Filter</button>
-                            <a class="btn btn-primary" href="{{ route('list_resep') }}">Resep</a>
+                            {{-- <a class="btn btn-primary" href="{{ route('list_resep') }}">Resep</a> --}}
                         </div>
                     </div>
                 </div>
@@ -129,26 +135,26 @@
                         <tr>
                             <th>ID Resep</th>
                             <th>Nama Resep</th>
-                            <th>Bahan Reaep</th>
+                            <th>Bahan Resep</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php $counter = 1; ?>
-                        @foreach ($resep as $item)
+                        @foreach ($data_resep as $item)
                             <tr>
-                                {{-- <td id="id_{{ $counter }}">{{ $item->id_resep }}</td>
-                                <td id="nama_{{ $counter }}">{{ $item->nama_masakan  }}</td>
-                                <td id="resep_{{ $counter }}">{{ $item->nama_resep  }}</td>
-                                <td>
+                                <td id="id_{{ $counter }}">{{ $item->id_resep }}</td>
+                                <td id="nama_{{ $counter }}">{{ $item->nama_resep  }}</td>
+                                <td id="resep_{{ $counter }}">{{ $item->foto  }}</td>
+                                {{-- <td>
                                     @if($item->stok_barang > 0)
                                         <span class="label bg-green"><i class="fa fa-check fa-fw"></i> Tersedia</span>
                                     @else
                                         <span class="label bg-red"><i class="fa fa-close fa-fw"></i> Tersedia</span>
                                     @endif
-                                </td>
-                                <td id="tanggal_{{ $counter }}">{{ $item->tanggal_masuk  }}</td>
-                                <td> --}}
+                                </td> --}}
+                                {{-- <td id="tanggal_{{ $counter }}">{{ $item->tanggal_masuk  }}</td> --}}
+                                <td>
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown">
                                             Action <span class="caret"></span>
@@ -202,8 +208,8 @@
                             <select name="id_resep" id="inp_edit_id_resep" class="form-control">
                                 <option>=== PILIH Resep ===</option>
                                 <?php $counter_resep = 1; ?>
-                                @foreach ($resep as $item)
-                                    <option value="{{ $item->id_resep }}" id="resep{{ $counter_resep }}" class="edit_resep">{{ $item->inp_nama_resep }}</option>
+                                @foreach ($data_resep as $item)
+                                    <option value="{{ $item->id_resep }}" id="resep{{ $counter_resep }}" class="edit_resep">{{ $item->nama_resep }}</option>
                                 <?php $counter_resep++; ?>
                                 @endforeach
                             </select>

@@ -110,14 +110,14 @@ img.product {
                     <h3 class="mb-3 h6 text-uppercase text-black d-block">Resep</h3>
                     <ul class="list-unstyled mb-0">
                         @foreach ($resep as $item)
-                            <li class="mb-1">
+                            {{-- <li class="mb-1">
                                 <a href="{{ route('resep') }}/?resep={{ strtolower(str_replace(' ', '-', $item['nama_resep'])) }}" class="d-flex">
                                     <span>{{ $item['nama_resep'] }}</span>
                                     <span class="text-black ml-auto">
                                         ({{ $item['jumlah_resep'] }})
                                     </span>
                                 </a>
-                            </li>
+                            </li> --}}
                         @endforeach
                     </ul>
                 </div>
