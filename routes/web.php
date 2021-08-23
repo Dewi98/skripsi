@@ -157,7 +157,7 @@ Route::get('invoice/{id_invoice}', 'Pengguna\Pesanan\PesananController@invoice')
 Route::group(['prefix' => 'admin'], function(){
     
 /** Halaman Beranda Utama */
-Route::get('/beranda-admin', 'Admin\BerandaController@index')->name('beranda_admin');
+Route::get('/', 'Admin\BerandaController@index')->name('beranda_admin');
 Route::get('sidebar_counter', function() {
     $table = ['barang', 'kategori', 'merk', 'pengguna', 'admin', 'pesanan', 'pembayaran', 'pengiriman'];
     $data = [];
@@ -295,16 +295,3 @@ Route::post('/resep/save', 'Resep\ResepController@save_resep')->name('save_resep
 Route::get('checkout/proses-pesanan', 'Pengguna\Transaksi\PembayaranController@index');
 Route::post('checkout/proses-pesanan', 'Admin\Transaksi\PembayaranController@prosesPesanan');
 
-//Menu
-// Route::get('/add', function () {
-//     return view('add');
-// Route::get('/admin', 'MenuController@show_by_admin');
-// });
-// Route::get('/', 'MenuController@show');
-// Route::post('/add_process', 'MenuController@add_process');
-// Route::get('/detail/{id}', 'MenuController@detail');
-// Route::get('/add', 'MenuController@add');
-// Route::get('/', 'MenuController@show');
-// Route::get('/edit/{id}', 'MenuController@edit');
-// Route::post('/edit_process', 'MenuController@edit_process');
-// Route::get('/delete/{id}', 'MenuController@delete');

@@ -54,7 +54,7 @@ class LoginController extends Controller
                         'superadmin'    => $data->superadmin
                     ]);
 
-                    return redirect('/beranda-admin');
+                    return redirect()->route('beranda_admin');
 
                 }
 
