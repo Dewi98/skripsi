@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Midtrans;
 
 class PembayaranController extends Controller
 {
@@ -22,7 +23,9 @@ class PembayaranController extends Controller
                 ['pembayaran.selesai', '0'], ['pembayaran.foto_bukti', '<>', 'NULL']
             ])->get();
 
-        return view('pengguna.pesanan.pembayaran', ['data_pembayaran' => $data]);
+        $midtrans = Midtrans::get();
+
+        return view('pengguna.pesanan.pembayaran', ['data_pembayaran' => $data, 'midtrans'=>$midtrans]);
 
     }
 

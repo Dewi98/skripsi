@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Admin\Transaksi\InvoiceController;
+use App\Midtrans;
 use Veritrans_Config;
 use Veritrans_Snap;
 
@@ -22,7 +23,9 @@ class PembayaranController extends Controller
                 ->where('pembayaran.selesai', 0)
                 ->get();
 
-            return view('admin.transaksi.pembayaran', ['data_pembayaran' => $data]);
+            $midtrans = Midtrans::get();
+
+            return view('admin.transaksi.pembayaran', ['data_pembayaran' => $data, 'midtrans' => $midtrans]);
 
         } else {
 
@@ -99,21 +102,32 @@ class PembayaranController extends Controller
         \Midtrans\Config::$isSanitized = true;
         // Set 3DS transaction for credit card to true
         \Midtrans\Config::$is3ds = true;
-        
+
+        $idPembayaran = rand();
+
         $params = array(
             'transaction_details' => array(
-                'order_id' => rand(),
+                'order_id' => $idPembayaran,
                 'gross_amount' => $request->total,
             ),
             'customer_details' => array(
-                'first_name' => $request->name,
+                'first_name' => $request->nama,
                 'email' => 'ratnaningsihd98@gmail.com',
-                'phone' => $request->telepon,
+                'phone' => $request->phone,
                 'address' => $request->alamat
             ),
         );
-        
+
         $snapToken = \Midtrans\Snap::getSnapToken($params);
+
+        $midtrans = new Midtrans();
+        $midtrans->id_pembayaran = $snapToken;
+        $midtrans->nama = $request->nama;
+        $midtrans->telepon = $request->phone;
+        $midtrans->alamat = $request->alamat;
+        $midtrans->total = intval($request->total);
+        $midtrans->status = 1;
+        $midtrans->save();
 
         return response()->json([
             'snap_token' => $snapToken

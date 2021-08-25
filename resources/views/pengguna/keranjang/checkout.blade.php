@@ -265,7 +265,7 @@
             axios.post('/api/checkout/proses-pesanan', {
                 total: total,
                 nama: nama,
-                telepon: telepon,
+                phone: telepon,
                 alamat: alamatTujuan
             })
             .then(function (response) {
@@ -286,8 +286,8 @@
                 });
             })
             .catch(function (error) {
-                console.log(error);
-            });   
+                console.log(error.response.data);
+            });
         }
     }
 </script>

@@ -165,6 +165,55 @@
         </div>
     </div>
 </div>
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="box box-success">
+            <div class="box-header">
+                <h3 class="box-title">
+                    Table Pembayaran Midtrans
+                </h3>
+            </div>
+            <div class="box-body">
+                <table class="table table-bordered table-hover" id="table_pembayaran3">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Kode Pesanan</th>
+                            <th>Atas Nama</th>
+                            <th>Total Pembayaran</th>
+                            {{-- <th class="py-2">Status</th> --}}
+                            <th>Lihat Status Pembayaran</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($midtrans as $key => $mid)
+                        <tr>
+                            <td>{{++$key}}</td>
+                            <td>{{$mid->id_pembayaran}}</td>
+                            <td>{{$mid->nama}}</td>
+                            <td>Rp {{$mid->total}}</td>
+                            {{-- <td>
+                                @if ($mid->status == 0)
+                                <span class="badge badge-secondary">
+                                    <i class="fa fa-close fa-fw"></i> Belum Di Verifikasi
+                                </span>
+                                @else
+                                <span class="badge badge-success">
+                                    <i class="fa fa-close fa-fw"></i> Telah Di Verifikasi
+                                </span>
+                                @endif
+                            </td> --}}
+                            <td>
+                                <button type="button" onClick="lihatPembayaran('{{$mid->id_pembayaran}}')" class="btn btn-primary"><i class="fa fa-eye"></i></button>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 @section('modal')
@@ -244,7 +293,32 @@
                 'lengthChange': false,
                 'length': 10,
             })
+            $('#table_pembayaran3').DataTable({
+                'lengthChange': false,
+                'length': 10,
+            })
         })
     </script>
+
+<script src="{{ !config('services.midtrans.isProduction') ? 'https://app.sandbox.midtrans.com/snap/snap.js' : 'https://app.midtrans.com/snap/snap.js' }}" data-client-key="{{ config('services.midtrans.clientKey') }}"></script>
+<script>
+    function lihatPembayaran(idPembayaran){
+        console.log(idPembayaran);
+        snap.pay(idPembayaran, {
+            // Optional
+            onSuccess: function (result) {
+                location.reload();
+            },
+            // Optional
+            onPending: function (result) {
+                location.reload();
+            },
+            // Optional
+            onError: function (result) {
+                location.reload();
+            }
+        });
+    }
+</script>
 
 @endsection
